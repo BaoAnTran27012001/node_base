@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import "dotenv/config";
+import allRoutes from "./routes/index.js";
+import connectDB from "./configs/db.js";
 // 1
 //  PORT ->Logical Port, Physical Port
 const app = express();
@@ -12,12 +14,8 @@ app.use(express.json()); // biến đổi dữ liệu client gửi lên thành k
 app.use(express.urlencoded({ extended: true })); // cho phép gửi lên dữ liệu kiểu mảng
 // 2
 // 3: Lập Route
-app.get("/", (req, res) => {
-  // req: dữ liệu từ client (browser) gửi lên cho server
-  // res: server trả về cho client
-  return res.send("GET HOMEPAGE");
-  // Mã mặc định:200
-});
+app.use("/api/v1", allRoutes);
+connectDB();
 const PORT = process.env.PORT || 6969;
 // 4: Khai báo port
 // 5:Chạy server này
