@@ -1,4 +1,4 @@
 @host=http://localhost:5000
 
 ### Get Homepage
-GET {{host}}/
+GET {{host}}/users
